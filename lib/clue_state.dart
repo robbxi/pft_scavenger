@@ -45,7 +45,7 @@ Future<void> markClueCompleted(int clueId) async {
   completedClueIds.add(clueId);
   
   // Update highest accessible clue if needed
-  if (clueId >= highestAccessibleClueId) {
+  if (clueId >= highestAccessibleClueId && clueId < clues.length) {
     highestAccessibleClueId = clueId + 1;
   }
   

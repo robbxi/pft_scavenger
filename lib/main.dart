@@ -152,7 +152,8 @@ class _OverviewPageState extends State<OverviewPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Clue $clueId"),
+                        if (isCompleted) Text("Clue $clueId, Answer: ${clue["answer"]}")
+                        else if (!isCompleted) Text("Clue $clueId"),
                         if (isCompleted) Icon(Icons.check_circle, color: Colors.white)
                         else if (!isAccessible) Icon(Icons.lock, color: Colors.white70),
                       ],
@@ -225,16 +226,44 @@ class _CluePageState extends State<CluePage> {
               ),
               
               // Display either "Mark as Completed" button or "Completed!" text
-              if (!isClueCompleted(widget.id))
+              if (widget.id + 1 > clues.length && isClueCompleted(widget.id))
+              Column(
+                children: [
+                  //// TODO: Add a completion message
+                  Text(
+                    "Congratulations!", 
+                    style: TextStyle(
+                      color: Colors.green, 
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    )
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        '/overview',
+                      );
+                    },
+                    child: Text("Return to Overview"),
+                  )
+                ],
+              )
+              else if (!isClueCompleted(widget.id))
               Column(children: [
+                Padding(padding: const EdgeInsets.all(10.0),
+                child:
                 TextField(
                 controller: _controller,
                 decoration: InputDecoration(
                 labelText: 'Your Answer', // Label for the text field
                 hintText: 'Type your answer here...', // Placeholder text
+                fillColor: Color.fromARGB(125, 255, 255, 255), // Background color for the text field
+                filled: true, // Fill the background with the above color
                 border: OutlineInputBorder(),
                 ),
-                ),                
+                ),    
+                ),            
                   ElevatedButton(
                     onPressed: () async {
                       if (compareAnswers(_controller.text, widget.answer)) {
@@ -243,7 +272,7 @@ class _CluePageState extends State<CluePage> {
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Incorrect answer. Try again!"),
+                            content: Text("Incorrect. Hint: ${clues[widget.id]["hint"]}"),
                           ),
                         );
                       }
@@ -263,6 +292,7 @@ class _CluePageState extends State<CluePage> {
                       fontSize: 18,
                     )
                   ),
+                  if (widget.id + 1 <= clues.length)
                   ElevatedButton(
                     onPressed: () {
                       int nextId = widget.id + 1;

@@ -2,8 +2,8 @@
     "clues": [
     { 
         "id": 1, 
-        "question": "Test 1", 
-        "answer": "1" ,
+        "question": "Although engineering may hurt your head, if you enter from the left you can buy:", 
+        "answer": "bread" ,
         "hint": "This is a hint"
     },
     {
