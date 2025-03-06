@@ -160,6 +160,10 @@ class _OverviewPageState extends State<OverviewPage> {
   }
 }
 
+bool compareAnswers(String answer1, String answer2) {
+  return answer1.toLowerCase().trim() == answer2.toLowerCase().trim();
+}
+
 class CluePage extends StatefulWidget {
   final int id;
   final String question;
@@ -178,6 +182,13 @@ class CluePage extends StatefulWidget {
 }
 
 class _CluePageState extends State<CluePage> {
+  TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose(); // Clean up the controller when the page is disposed
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -200,13 +211,32 @@ class _CluePageState extends State<CluePage> {
               
               // Display either "Mark as Completed" button or "Completed!" text
               if (!isClueCompleted(widget.id))
-                ElevatedButton(
-                  onPressed: () async {
-                    await markClueCompleted(widget.id);
-                    setState(() { });
-                  },
-                  child: Text("Mark as Completed"),
-                )
+              Column(children: [
+                TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                labelText: 'Your Answer', // Label for the text field
+                hintText: 'Type your answer here...', // Placeholder text
+                border: OutlineInputBorder(),
+                ),
+                ),                
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (compareAnswers(_controller.text, widget.answer)) {
+                        await markClueCompleted(widget.id);
+                        setState(() { });
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Incorrect answer. Try again!"),
+                          ),
+                        );
+                      }
+                    },
+                    child: Text("Mark as Completed"),
+                  )
+                ],
+              )
               else
               Column(
                 children: [
