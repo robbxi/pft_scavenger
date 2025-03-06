@@ -5,11 +5,25 @@ import 'clue_state.dart'; // Import the clue state file
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Required for early SharedPreferences access
   await loadClueState(); 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: StartPage(),
-  ));
+  runApp(MyApp());
 }
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter App',
+      // Define the initial route
+      initialRoute: '/',
+      // Define routes
+      routes: {
+        '/': (context) => StartPage(),
+        '/overview': (context) => OverviewPage(),
+      },
+    );
+  }
+}
+
 AppBar buildAppBar(BuildContext context, String title) {
   return AppBar(
     flexibleSpace: Container(
@@ -27,11 +41,12 @@ AppBar buildAppBar(BuildContext context, String title) {
         IconButton(
           icon: Icon(Icons.home, color: Colors.white),
           onPressed: () {
-            Navigator.pushReplacement(
-      
+            if (ModalRoute.of(context)?.settings.name != '/overview') {
+              Navigator.pushReplacementNamed(
                 context,
-                MaterialPageRoute(builder: (context) => OverviewPage()),
+                '/overview',
               );
+            }
           },
         ),
       ],
@@ -72,9 +87,9 @@ class StartPage extends StatelessWidget {
         child: Center(
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.pushReplacementNamed(
                 context,
-                MaterialPageRoute(builder: (context) => OverviewPage()),
+                '/overview',
               );
             },
             child: Text("Go to Second Page"),
