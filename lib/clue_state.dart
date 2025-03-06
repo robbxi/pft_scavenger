@@ -1,11 +1,19 @@
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
-
 // Global variables to track clue state
 Set<int> completedClueIds = {};
 int highestAccessibleClueId = 1;
+List<Map<String, dynamic>> clues = []; // Add the clues array here
 
-// Load the saved state
+// Load the saved state and clues
 Future<void> loadClueState() async {
+  // Load clues from JSON file
+  final String jsonString = await rootBundle.loadString('assets/clues.json');
+  final Map<String, dynamic> jsonData = json.decode(jsonString);
+  clues = List<Map<String, dynamic>>.from(jsonData["clues"]);
+  
+  // Load completion state from SharedPreferences
   final prefs = await SharedPreferences.getInstance();
   
   // Load completed clue IDs

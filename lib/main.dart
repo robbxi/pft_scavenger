@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'clue_state.dart'; // Import the clue state file
 
 void main() async {
@@ -93,20 +92,10 @@ class OverviewPage extends StatefulWidget {
 }
 
 class _OverviewPageState extends State<OverviewPage> {
-  List<Map<String, dynamic>> clues = [];
 
   @override
   void initState() {
     super.initState();
-    _loadClues();
-  }
-
-  Future<void> _loadClues() async {
-    final String jsonString = await rootBundle.loadString('assets/clues.json');
-    final Map<String, dynamic> jsonData = json.decode(jsonString);
-    setState(() {
-      clues = List<Map<String, dynamic>>.from(jsonData["clues"]);
-    });
   }
 
   @override
@@ -140,14 +129,10 @@ class _OverviewPageState extends State<OverviewPage> {
                             id: clueId,
                             question: clue["question"],
                             answer: clue["answer"],
-                            onClueCompleted: () async {
-                              await markClueCompleted(clueId);
-                              setState(() {}); // Refresh the UI
-                            },
                             isCompleted: isCompleted,
                           ),
                         ),
-                      ).then((_) => setState(() {})); // Refresh when returning
+                      ); // Refresh when returning
                     } : null,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -175,25 +160,28 @@ class _OverviewPageState extends State<OverviewPage> {
   }
 }
 
-class CluePage extends StatelessWidget {
+class CluePage extends StatefulWidget {
   final int id;
   final String question;
   final String answer;
-  final VoidCallback onClueCompleted;  // Added parameter - callback function
-  final bool isCompleted; 
+  final bool isCompleted;
 
   CluePage({
     required this.id, 
     required this.question, 
     required this.answer, 
-    required this.onClueCompleted,  // Required parameter
-    this.isCompleted = false,  // Optional parameter with default value
+    this.isCompleted = false,
   });
 
   @override
+  _CluePageState createState() => _CluePageState();
+}
+
+class _CluePageState extends State<CluePage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, "Clue $id"),
+      appBar: buildAppBar(context, "Clue ${widget.id}"),
       body: Container(
         decoration: buildBackground(),
         child: Center(
@@ -204,30 +192,51 @@ class CluePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  question, 
+                  widget.question, 
                   style: TextStyle(fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
               ),
               
               // Display either "Mark as Completed" button or "Completed!" text
-              if (!isCompleted)
+              if (!isClueCompleted(widget.id))
                 ElevatedButton(
-                  onPressed: () {
-                    onClueCompleted(); // Call the callback function when button is pressed
-                    Navigator.pop(context); // Go back to the overview page
+                  onPressed: () async {
+                    await markClueCompleted(widget.id);
+                    setState(() { });
                   },
                   child: Text("Mark as Completed"),
                 )
               else
-                Text(
-                  "Completed!", 
-                  style: TextStyle(
-                    color: Colors.green, 
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+              Column(
+                children: [
+                  Text(
+                    "Completed!", 
+                    style: TextStyle(
+                      color: Colors.green, 
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    )
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      int nextId = widget.id + 1;
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CluePage(
+                              id: nextId,
+                              question: clues[nextId-1]["question"],
+                              answer: clues[nextId-1]["answer"],
+                              isCompleted: isClueCompleted(nextId),
+                            ),
+                          ),
+                        );
+                    },
+                    child: Text("Next Clue"),
                   )
-                ),
+                ],
+              )
             ],
           ),
         ),
