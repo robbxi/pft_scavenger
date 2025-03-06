@@ -1,0 +1,46 @@
+{
+    "clues": [
+    { 
+        "id": 0, 
+        "question": "Test 1", 
+        "answer": "1" ,
+        "hint": "This is a hint"
+    },
+    {
+        "id": 2, 
+        "question": "Test 2", 
+        "answer": "2",
+        "hint": "This is a hint"
+    },
+    {
+        "id": 3, 
+        "question": "Test 3", 
+        "answer": "3",
+        "hint": "This is a hint"
+    },
+    {
+        "id": 4, 
+        "question": "Test 4", 
+        "answer": "4",
+        "hint": "This is a hint"
+    },
+    {
+        "id": 5, 
+        "question": "Test 5", 
+        "answer": "5",
+        "hint": "This is a hint"
+    },
+    {
+        "id": 6, 
+        "question": "Test 6", 
+        "answer": "6",
+        "hint": "This is a hint"
+    },
+    {
+        "id": 7, 
+        "question": "Test 7", 
+        "answer": "7",
+        "hint": "This is a hint"
+    }
+    ]
+  }
