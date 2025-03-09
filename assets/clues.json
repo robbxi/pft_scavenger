@@ -12,57 +12,67 @@
     },
     {
         "id": 2, 
-        "title": "Entering the building",
-        "location": "Panera Bread",
-        "question": "Panera's treats are sweet", 
-        "answer": "2",
+        "title": "Venturing further",
+        "location": "Tau Beta Pi Bent",
+        "question": "Panera's treats are sweet, but if you keep moving your feet a strange gold sculpture you'll meet. What is the name of the organization that this symbol represents?", 
+        "answer": "Tau Beta Pi",
         "hint": "This is a hint",
-        "blurb": "This is a blurb"
+        "blurb": "The Tau Beta Pi Association is the oldest engineering honor society and the second oldest collegiate honor society in the United States. The LSU chapter was founded in 1936 and was the first chapter in the state of Louisiana. The organization's emblem is the bent of a trestle, which is a symbol of engineering and the organization's principles of integrity and excellence in engineering."
 
     },
     {
         "id": 3, 
-        "title": "Entering the building",
-        "location": "Panera Bread",
-        "question": "Test 3", 
-        "answer": "3",
-        "hint": "This is a hint",
-        "blurb": "This is a blurb"
+        "title": "Stepping stones",
+        "location": "Capstone stairs",
+        "question": "Despite the decieving name, they are made out of wood, if you follow them up you'll see a car on the left with what name on its hood? (Trunk actually but I like ryhmes)", 
+        "answer": "Ford",
+        "hint": "You will find the capstone stairs if you walk straight from the Panera entrance, peer through the glass on the left at the top and you will see a car.",
+        "blurb": "This is the Civil Engineering Simulation lab, also known as the “Car Room,” students use this simulator to study traffic, highway design, safety, autonomous cars, etc. "
     },
     {
         "id": 4, 
-        "title": "Entering the building",
-        "location": "Panera Bread",
-        "question": "Test 4", 
-        "answer": "4",
-        "hint": "This is a hint"
+        "title": "New heights",
+        "location": "Bridge 2100",
+        "question": "If continue on over the bridge so high, on your right you will see a vending room where a diet coke costs ___", 
+        "answer": "1.75",
+        "hint": "If you walk straight from the car room on your left, and go over the bridge you will see a vending room on your right.",
+        "blurb": "This is a great time to take a break and grab a snack or drink. This is one of the many vending rooms in Patrick F. Taylor Hall, and is a great place to relax and recharge."
     },
     {
         "id": 5, 
-        "title": "Entering the building",
-        "location": "Panera Bread",
-        "question": "Test 5", 
-        "answer": "5",
-        "hint": "This is a hint",
-        "blurb": "This is a blurb"
+        "title": "Preparing for battle",
+        "location": "Engineering Showcase",
+        "question": "Exit the vending room and make two rights, you will meet a showcase with robotic delights, the name of one is a play on the famous one eyed monster from Monsters Inc. What is the name of this robot?", 
+        "answer": "Mike Waplowski",
+        "hint": "This one may be tough to find, but if you look through the showcase of the battle bots there will be one on the bottom row with this name on it.",
+        "blurb": "Bengal bots is a student organization that designs and builds robots to compete in various competitions. The robots are designed and built by students, and are a great way to get hands on experience in robotics."
     },
     {
         "id": 6, 
-        "title": "Entering the building",
-        "location": "Panera Bread",
-        "question": "Test 6", 
-        "answer": "6",
-        "hint": "This is a hint",
-        "blurb": "This is a blurb"
+        "title": "Another Bridge?",
+        "location": "Dean's Suite",
+        "question": "Facing Mike, turn right and walk straight, cross the bridge and see a suite on the right, behind the glass you'll see a tree dedicated to what special night?", 
+        "answer": "Christmas",
+        "hint": "Once you have turned right from Mike, continue walking straight past the hallway with the vending room, continue untill you see another bridge on your left, cross it and you should be able to see the tree inside the office.",
+        "blurb": "The Dean's Suite is the office of the Dean of the College of Engineering. The tree is a Christmas tree, and is decorated for different holidays throught the year."
     },
     {
         "id": 7, 
-        "title": "Entering the building",
-        "location": "Panera Bread",
-        "question": "Test 7", 
-        "answer": "7",
-        "hint": "This is a hint",
-        "blurb": "This is a blurb"
+        "title": "Decension",
+        "location": "Partner Wall",
+        "question": "On your left you will see a large set of stairs, go down them quickly but do so with care, follow your path and on your left a glowing wall will apeear, what is the first four letter of the top left name that you see here?", 
+        "answer": "BNSF",
+        "hint": "Once you are down the stairs, continue walking straight towards the exit, passing a hallway on your left, the wall will be on your left, in between two classrooms.",
+        "blurb": "The Partner Wall is a wall that displays the names of companies that have partnered with the College of Engineering. These companies provide support for the college, and offer internships and job opportunities for students."
+    },
+    {
+        "id": 8, 
+        "title": "Fresh Air",
+        "location": "Oak Tree",
+        "question": "Facing the wall turn the opposite of right, walk straight out the doors and into the light, follow this path and go to the nearest tree that's in sight, what are the last names that the plaque under the tree recites?", 
+        "answer": "Ashford",
+        "hint": "I may have gotten carried away with the rhymes here but if you walk through the Cambre Atrium and out the doors towards campus and follow the side walk, the first large tree on your right will have a plaque under it.",
+        "blurb": "The Endow an Oak program was introduced in 1993 to ameliorate the poor health of many of LSU's oaks, for which declining care was an unfortunate consequence of budget limitations. Since its introduction, Endow an Oak has successfully garnered critical funds to support the care and maintenance of LSU's most treasured natural residents. LSU also provides funding, but the needs far exceed these funds as the oak trees mature and as more trees are planted."
     }
     ]
   }
