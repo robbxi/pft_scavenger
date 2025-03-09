@@ -51,9 +51,12 @@ AppBar buildAppBar(BuildContext context, String title) {
         ),
       ],
     ),
-    title: Text(
+    title: FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Text(
       title,
       style: TextStyle(color: Colors.white),
+      ),
     ),
     actions: [
       Padding(
@@ -216,14 +219,16 @@ class _OverviewPageState extends State<OverviewPage> {
             ],
           ),
     ),
-    floatingActionButton: FloatingActionButton(
-      onPressed: () async {
+    floatingActionButton: isClueCompleted(clues.length)
+      ? FloatingActionButton(
+        onPressed: () async {
         await resetClueProgress();
         setState(() {});
-      },
-      child: Icon(Icons.refresh),
-      tooltip: "Reset Progress",
-    ),
+        },
+        child: Icon(Icons.refresh),
+        tooltip: "Reset Progress",
+      )
+      : null,
   );
 }
 }
@@ -260,7 +265,7 @@ class _CluePageState extends State<CluePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, "Clue ${widget.id}"),
+      appBar: buildAppBar(context, clues[widget.id-1]["title"]),
       body: Container(
         decoration: buildBackground(),
         child: Center(
@@ -285,14 +290,18 @@ class _CluePageState extends State<CluePage> {
               Column(
                 children: [
                   //// TODO: Add a completion message
-                  Text(
-                    "Congratulations!", 
-                    style: TextStyle(
+                    Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      "Congratulations! You have completed the hunt, you should now be around where you started. You can click return to overview to see your path and the clues you have completed. If you would like to reset your progress you can do so with the button in the bottom right of the overview page. Good job and Thanks for playing!", 
+                      style: TextStyle(
                       color: Colors.green, 
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                    )
-                  ),
+                      ),
+                    ),
+                    ),
+                  
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(
