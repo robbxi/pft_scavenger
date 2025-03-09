@@ -2,45 +2,67 @@
     "clues": [
     { 
         "id": 1, 
-        "question": "Although engineering may hurt your head, if you enter from the left you can buy:", 
-        "answer": "bread" ,
-        "hint": "This is a hint"
+        "title": "Entering the building",
+        "location": "Panera Bread",
+        "question": "Although engineering may hurt your head, if you enter from the left you can buy ____", 
+        "answer": "Bread" ,
+        "hint": "You might also get a bagel or coffee here",
+        "blurb": "Panera Bread is a chain of fast casual restaurants in the United States and Canada. Food items include soups, salads, pasta, sandwiches, and bakery items. Panera Bread is known for its fresh bread and pastries, and is a great place to study or meet with friends."
+
     },
     {
         "id": 2, 
-        "question": "Test 2", 
+        "title": "Entering the building",
+        "location": "Panera Bread",
+        "question": "Panera's treats are sweet", 
         "answer": "2",
-        "hint": "This is a hint"
+        "hint": "This is a hint",
+        "blurb": "This is a blurb"
+
     },
     {
         "id": 3, 
+        "title": "Entering the building",
+        "location": "Panera Bread",
         "question": "Test 3", 
         "answer": "3",
-        "hint": "This is a hint"
+        "hint": "This is a hint",
+        "blurb": "This is a blurb"
     },
     {
         "id": 4, 
+        "title": "Entering the building",
+        "location": "Panera Bread",
         "question": "Test 4", 
         "answer": "4",
         "hint": "This is a hint"
     },
     {
         "id": 5, 
+        "title": "Entering the building",
+        "location": "Panera Bread",
         "question": "Test 5", 
         "answer": "5",
-        "hint": "This is a hint"
+        "hint": "This is a hint",
+        "blurb": "This is a blurb"
     },
     {
         "id": 6, 
+        "title": "Entering the building",
+        "location": "Panera Bread",
         "question": "Test 6", 
         "answer": "6",
-        "hint": "This is a hint"
+        "hint": "This is a hint",
+        "blurb": "This is a blurb"
     },
     {
         "id": 7, 
+        "title": "Entering the building",
+        "location": "Panera Bread",
         "question": "Test 7", 
         "answer": "7",
-        "hint": "This is a hint"
+        "hint": "This is a hint",
+        "blurb": "This is a blurb"
     }
     ]
   }

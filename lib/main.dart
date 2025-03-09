@@ -85,14 +85,32 @@ class StartPage extends StatelessWidget {
       body: Container(
         decoration: buildBackground(),
         child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(
-                context,
-                '/overview',
-              );
-            },
-            child: Text("Go to Second Page"),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  "Welcome to the Scavenger Hunt! Start outside of PFT and face the building from the north side. If at any point you need a hint, view the pop up when the incorrect answer is entered. Good luck!",
+                  style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                ),
+              SizedBox(height: 20), // Add some space between the text and the button
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    '/overview',
+                  );
+                },
+                child: Text("Start Hunt"),
+              ),
+            ],
           ),
         ),
       ),
@@ -114,66 +132,100 @@ class _OverviewPageState extends State<OverviewPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context, "Overview"),
-      body: Container(
-        decoration: buildBackground(),
-        child: clues.isEmpty
-          ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: clues.length,
-              itemBuilder: (context, index) {
-                final clue = clues[index];
-                final clueId = clue["id"];
-                final isCompleted = isClueCompleted(clueId);
-                final isAccessible = isClueAccessible(clueId);
-                
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: isCompleted ? Colors.green : 
-                                       !isAccessible ? Colors.grey : null,
-                    ),
-                    onPressed: isAccessible ? () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CluePage(
-                            id: clueId,
-                            question: clue["question"],
-                            answer: clue["answer"],
-                            isCompleted: isCompleted,
-                          ),
-                        ),
-                      ); // Refresh when returning
-                    } : null,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        if (isCompleted) Text("Clue $clueId, Answer: ${clue["answer"]}")
-                        else if (!isCompleted) Text("Clue $clueId"),
-                        if (isCompleted) Icon(Icons.check_circle, color: Colors.white)
-                        else if (!isAccessible) Icon(Icons.lock, color: Colors.white70),
-                      ],
+ Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: buildAppBar(context, "Overview"),
+    body: Container(
+      decoration: buildBackground(),
+      child: clues.isEmpty
+        ? Center(child: CircularProgressIndicator())
+        : Column(
+            children: [
+              // Add your custom button at the top here
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50), // full width button
+                    backgroundColor: Colors.blue, 
+                  ),
+                  
+                  onPressed: () {
+                    // Add your button action here
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/',
+                    );
+                  },
+                  child: Text("Instructions",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
                     ),
                   ),
-                );
-              },
-            ),
-      ),
-      // Optional: Add a reset button for testing
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await resetClueProgress();
-          setState(() {}); // Refresh the UI
-        },
-        child: Icon(Icons.refresh),
-        tooltip: "Reset Progress",
-      ),
-    );
-  }
+                ),
+              ),
+              // Remaining space goes to the ListView
+              Expanded(
+                child: ListView.builder(
+                  itemCount: clues.length,
+                  itemBuilder: (context, index) {
+                    final clue = clues[index];
+                    final clueId = clue["id"];
+                    final isCompleted = isClueCompleted(clueId);
+                    final isAccessible = isClueAccessible(clueId);
+                    
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          disabledBackgroundColor: const Color.fromARGB(106, 158, 158, 158),
+                          backgroundColor: isCompleted ? Colors.green : 
+                                          !isAccessible ? Colors.grey : null,
+                        ),
+                        onPressed: isAccessible ? () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CluePage(
+                                id: clueId,
+                                question: clue["question"],
+                                answer: clue["answer"],
+                                isCompleted: isCompleted,
+                              ),
+                            ),
+                          );
+                        } : null,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            if (isCompleted) Text("${clue["location"]}")
+                            else if (!isCompleted) Text("${clue["title"]}"),
+                            if (isCompleted) Icon(Icons.check_circle, color: Colors.white)
+                            else if (!isAccessible) Icon(Icons.lock, color: Colors.white70),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+    ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: () async {
+        await resetClueProgress();
+        setState(() {});
+      },
+      child: Icon(Icons.refresh),
+      tooltip: "Reset Progress",
+    ),
+  );
+}
 }
 
 bool compareAnswers(String answer1, String answer2) {
@@ -220,7 +272,10 @@ class _CluePageState extends State<CluePage> {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   widget.question, 
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -272,7 +327,7 @@ class _CluePageState extends State<CluePage> {
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Incorrect. Hint: ${clues[widget.id]["hint"]}"),
+                            content: Text("Incorrect. Hint: ${clues[widget.id-1]["hint"]}"),
                           ),
                         );
                       }
@@ -284,19 +339,23 @@ class _CluePageState extends State<CluePage> {
               else
               Column(
                 children: [
-                  Text(
-                    "Completed!", 
-                    style: TextStyle(
+                    Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      clues[widget.id-1]["blurb"], 
+                      style: TextStyle(
                       color: Colors.green, 
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                    )
-                  ),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    ),
                   if (widget.id + 1 <= clues.length)
                   ElevatedButton(
                     onPressed: () {
                       int nextId = widget.id + 1;
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CluePage(
