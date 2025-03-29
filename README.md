@@ -48,6 +48,8 @@ Implement the overview page UI with progress tracking.
 
 Create a clue page with answer input and validation.
 
+Make more clues.
+
 Add navigation between pages.
 
 Implement a function to check if a clue is completed.
