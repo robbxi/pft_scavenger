@@ -1,6 +1,6 @@
 # pft_scavenger
 
-A new Flutter project.
+Scavenger hunt for PFT hall
 
 ## Getting Started
 
