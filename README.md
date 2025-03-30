@@ -1,6 +1,6 @@
 # pft_scavenger
 
-A new Flutter project.
+Scavenger hunt for PFT hall
 
 ## Getting Started
 
@@ -47,6 +47,8 @@ Implement the start page UI.
 Implement the overview page UI with progress tracking.
 
 Create a clue page with answer input and validation.
+
+Make more clues.
 
 Add navigation between pages.
 
