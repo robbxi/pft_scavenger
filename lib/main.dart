@@ -27,8 +27,9 @@ class MyApp extends StatelessWidget {
 }
 
 AppBar buildAppBar(BuildContext context, String title) {
+  bool backbutton = title == "Map";
   return AppBar(
-    automaticallyImplyLeading: false,
+    automaticallyImplyLeading: backbutton,
     shape: Border(
       bottom: BorderSide(
         color: Color(0x33333333),
@@ -46,15 +47,20 @@ AppBar buildAppBar(BuildContext context, String title) {
       children: [
         // Left Icons (Fixed Width)
         SizedBox(
-          width: 100, // Reserve space for icons
+          width: ModalRoute.of(context)?.settings.name != '/map' ? 100 : 0, // Reserve space for icons
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (ModalRoute.of(context)?.settings.name != '/overview')
+              if (ModalRoute.of(context)?.settings.name != '/overview' &&
+                  ModalRoute.of(context)?.settings.name != '/map')
                 IconButton(
                   icon: Icon(Icons.home, color: Color(0xFF461D7C)),
                   iconSize: 30,
                   onPressed: () {
+                    if (ModalRoute.of(context)?.settings.name != '/map' &&
+                        ModalRoute.of(context)?.settings.name != '/') {
+                      Navigator.pop(context);
+                    }
                     Navigator.pushReplacementNamed(context, '/overview');
                   },
                 ),
@@ -63,7 +69,7 @@ AppBar buildAppBar(BuildContext context, String title) {
                   icon: Icon(Icons.map, color: Color(0xFF461D7C)),
                   iconSize: 30,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/map');
+                    Navigator.pushNamed(context, '/map');
                   },
                 ),
             ],
@@ -309,7 +315,7 @@ class _OverviewPageState extends State<OverviewPage> {
                             padding: EdgeInsets.symmetric(vertical: 16),
                           ),
                           onPressed: isAccessible ? () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => CluePage(
