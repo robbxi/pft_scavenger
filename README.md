@@ -1,7 +1,7 @@
 # pft_scavenger
 
 Scavenger hunt for PFT hall
-
+ 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
