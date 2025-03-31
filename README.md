@@ -1,6 +1,6 @@
 # pft_scavenger
 
-Scavenger hunt for PFT hall
+Scavenger hunt for PFT hall, created for 4330
  
 ## Getting Started
 
