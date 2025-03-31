@@ -56,6 +56,8 @@ Implement a function to check if a clue is completed.
 
 Store and retrieve game progress.
 
+Add map page.
+
 Add a reset progress feature.
 
 Implement UI styling and animations for a better experience.
