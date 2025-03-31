@@ -71,3 +71,5 @@ Ensure core functionality (navigation, clue progression, and answer validation) 
 Store user progress persistently.
 
 Improve UI with smooth transitions and animations.
+
+Make routing better.
