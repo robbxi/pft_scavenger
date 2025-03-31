@@ -68,6 +68,26 @@ flutter:
      - assets/lsu.png
      - assets/trees.jpg
      - assets/clues.json
+     - assets/lsutree.jpg
+     - assets/lsutreeblur.jpg
+     - assets/clue0.jpg
+     - assets/clue1.jpg
+     - assets/clue2.jpg
+     - assets/clue3.jpg
+     - assets/clue4.jpg
+     - assets/clue5.jpg
+     - assets/clue6.jpg
+     - assets/clue7.jpg
+     - assets/clue8.jpg
+     - assets/clue9.jpg
+     - assets/clue10.jpg
+
+  fonts:
+    - family: ProximaNova
+      fonts:
+        - asset: fonts/ProximaNova-Regular.ttf
+        - asset: fonts/ProximaNova-Bold.otf
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

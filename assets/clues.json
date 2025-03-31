@@ -31,15 +31,24 @@
     },
     {
         "id": 4, 
-        "title": "New heights",
+        "title": "New Heights",
         "location": "Bridge 2100",
+        "question": "Continuing forward you will find a narrow straight on a bridge thats great, what is this passage called?", 
+        "answer": "2100",
+        "hint": "Right before the bridge there will be a sign to your right with a large number, that number is the answer",
+        "blurb": "This bridge goes over the Cambre Atrium and connects the second floor of PFT."
+    },
+    {
+        "id": 5, 
+        "title": "Time to refresh",
+        "location": "Vending Room",
         "question": "If continue on over the bridge so high, on your right you will see a vending room where a diet coke costs ___", 
         "answer": "1.75",
         "hint": "If you walk straight from the car room on your left, and go over the bridge you will see a vending room on your right.",
         "blurb": "This is a great time to take a break and grab a snack or drink. This is one of the many vending rooms in Patrick F. Taylor Hall, and is a great place to relax and recharge."
     },
     {
-        "id": 5, 
+        "id": 6, 
         "title": "Preparing for battle",
         "location": "Engineering Showcase",
         "question": "Exit the vending room and make two rights, you will meet a showcase with robotic delights, the name of one is a play on the famous one eyed monster from Monsters Inc. What is the name of this robot?", 
@@ -48,16 +57,25 @@
         "blurb": "Bengal bots is a student organization that designs and builds robots to compete in various competitions. The robots are designed and built by students, and are a great way to get hands on experience in robotics."
     },
     {
-        "id": 6, 
+        "id": 7, 
         "title": "Another Bridge?",
+        "location": "Bridge 2300",
+        "question": "Facing Mike, turn right and walk straight, to the left you will see a familiar sight but this bridge is name what?",
+        "answer": "2300",
+        "hint": "Once you have turned right from Mike, continue walking straight past the hallway with the vending room, continue untill you see another bridge on your left, like before the bridge number is the answer.",
+        "blurb": "This is another bridge that connects the second level of PFT, and provides easy access to offices and study spaces on the second floor."
+    },
+    {
+        "id": 8, 
+        "title": "Ornamental Sights",
         "location": "Dean's Suite",
-        "question": "Facing Mike, turn right and walk straight, cross the bridge and see a suite on the right, behind the glass you'll see a tree dedicated to what special night?", 
+        "question": "Cross the bridge and see a suite on the right, behind the glass you'll see a tree dedicated to what special night?", 
         "answer": "Christmas",
         "hint": "Once you have turned right from Mike, continue walking straight past the hallway with the vending room, continue untill you see another bridge on your left, cross it and you should be able to see the tree inside the office.",
         "blurb": "The Dean's Suite is the office of the Dean of the College of Engineering. The tree is a Christmas tree, and is decorated for different holidays throught the year."
     },
     {
-        "id": 7, 
+        "id": 9, 
         "title": "Decension",
         "location": "Partner Wall",
         "question": "On your left you will see a large set of stairs, go down them quickly but do so with care, follow your path and on your left a glowing wall will apeear, what is the first four letter of the top left name that you see here?", 
@@ -66,7 +84,7 @@
         "blurb": "The Partner Wall is a wall that displays the names of companies that have partnered with the College of Engineering. These companies provide support for the college, and offer internships and job opportunities for students."
     },
     {
-        "id": 8, 
+        "id": 10, 
         "title": "Fresh Air",
         "location": "Oak Tree",
         "question": "Facing the wall turn the opposite of right, walk straight out the doors and into the light, follow this path and go to the nearest tree that's in sight, what are the last names that the plaque under the tree recites?", 
